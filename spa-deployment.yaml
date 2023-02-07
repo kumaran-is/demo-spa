@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment # Kubernetes resource kind we are creating
+metadata:
+  name: demo-deployment
+  creationTimestamp: null
+  labels:
+    app: demo
+spec:
+  replicas: 1 # Number of replicas that will be created for this deployment
+  selector:
+    matchLabels:
+      app: demo
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: demo
+    spec:
+      containers:
+        - name: demo-deploment-container
+          image: kumaranisk/spa-demo:v1 # Image that will be used to containers in the cluster
+          imagePullPolicy: Always
+          ports:
+          - containerPort: 8000 # The port that the container is running on in the cluster
